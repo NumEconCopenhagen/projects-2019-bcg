@@ -221,7 +221,46 @@ def plot_timeseries(thedata):
         
     )     
 
-plot_timeseries(thedata)            
+plot_timeseries(thedata)  
+
+
+#%%Philips Curve
+
+def _philips_curve(thedata,Country):
+ 
+    thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
+    
+    I = (thedata['Country'] == Country)
+    
+    a=thedata.loc[I,'Total Unemployment (%)']
+    b=thedata.loc[I,'Inflation Rate (%)']
+    plt.scatter(a,b)
+    plt.xlabel('Total Unemployment (%)')
+    plt.ylabel('Inflation Rate (%)')
+    plt.title('Philips Curve')
+    
+    plt.plot(a, b, '--')
+
+    YEAR=thedata['Year']
+    
+    plt.plot(np.unique(a), np.poly1d(np.polyfit(a, b, 1))(np.unique(a)))
+    
+    #for i, txt in enumerate(YEAR):
+     #   plt.annotate(txt,(a[i], b[i]))
+
+def philips_curve(thedata):
+    
+    widgets.interact(_philips_curve,  
+    thedata = widgets.fixed(thedata),
+        Country=widgets.Dropdown(
+        description='OECD Country', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False)
+                    )
+
+philips_curve(thedata)
+    
 
 
 
