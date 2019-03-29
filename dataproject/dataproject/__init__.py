@@ -1,12 +1,11 @@
-#%%
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pandas_datareader import wb
 import ipywidgets as widgets
 
+#GDP growth data from World Bank
 
-#GDP growth data from World Bank using API
 gdp = wb.download(indicator='NY.GDP.MKTP.KD.ZG', country=['all'], start=1997, end=2018)
 gdp = gdp.rename(columns = {'NY.GDP.MKTP.KD.ZG':'gdp growth'})
 gdp = gdp.reset_index()
@@ -179,7 +178,7 @@ final.to_csv('D:/MScEconomics/Python/Project1/thedata.csv', index = False)
 thedata=pd.read_csv('D:/MScEconomics/Python/Project1/thedata.csv')
 thedata.head()
 
-sss
+#sss
 
 
 
