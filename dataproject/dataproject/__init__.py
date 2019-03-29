@@ -179,6 +179,49 @@ thedata=pd.read_csv('D:/MScEconomics/Python/Project1/thedata.csv')
 thedata.head()
 
 
+#%% Plotting
+
+def _plot_timeseries(thedata,Country,variable1,variable2):
+
+    fig = plt.figure(dpi=100)
+    ax = fig.add_subplot(1,1,1)
+    thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
+                                                                
+    I = (thedata['Country'] == Country)
+    
+    x = thedata.loc[I,'Year']
+    y = thedata.loc[I,variable1]
+    z = thedata.loc[I,variable2]
+    ax.plot(x,y,'g')
+    ax.plot(x,z,'y')
+    
+    ax.set_xticks(list(range(2004, 2016 + 1, 2)))
+    ax.set_xlabel('Year')
+    ax.legend(loc='upper right')
+
+def plot_timeseries(thedata):
+    
+    widgets.interact(_plot_timeseries,  
+    thedata = widgets.fixed(thedata),
+        Country=widgets.Dropdown(
+        description='OECD Country (No data for % AVG Wage for Turkey)', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False),
+                     
+        variable1 = widgets.Dropdown(
+        description='Variable1', 
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='GDP Growth (%)'),
+                     
+        variable2 = widgets.Dropdown(
+        description='Variable2', 
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Inflation Rate (%)')
+        
+    )     
+
+plot_timeseries(thedata)            
 
 
 
@@ -186,3 +229,8 @@ thedata.head()
 
 
 
+
+
+
+
+#%%
