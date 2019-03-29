@@ -31,7 +31,7 @@ GDP_ccode.head()
 
 #%%
 #Import Average wage data
-avg_wage = "D:\MScEconomics\Python\Project1/OECDwage.csv"
+avg_wage = "D://MScEconomics//Python//Project1//OECDwage.csv"
 wages= pd.read_csv(avg_wage)
 wages.head()
 
