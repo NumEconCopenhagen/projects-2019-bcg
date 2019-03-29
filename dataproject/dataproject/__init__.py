@@ -179,6 +179,8 @@ final.to_csv('D:/MScEconomics/Python/Project1/thedata.csv', index = False)
 thedata=pd.read_csv('D:/MScEconomics/Python/Project1/thedata.csv')
 thedata.head()
 
+sss
+
 
 
 
