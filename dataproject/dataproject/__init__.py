@@ -273,4 +273,3 @@ def philips_curve(thedata):
 philips_curve(thedata)
 
 
-#%%
