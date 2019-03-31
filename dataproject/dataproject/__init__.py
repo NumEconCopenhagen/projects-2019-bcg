@@ -153,11 +153,12 @@ def _plot_1(thedata,Country1,Country2,Variable1):
     ax = fig.add_subplot(1,1,1)
     thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
                                                                 
-    I = (thedata['Country'] == Country)
+    I = (thedata['country'] == Country1)
+    i = (thedata['country'] == Country2)
     
     x = thedata.loc[I,'Year']
-    y = thedata.loc[I,Country1]
-    z = thedata.loc[I,Country2]
+    y = thedata.loc[I,Variable1]
+    z = thedata.loc[i,Variable2]
     ax.plot(x,y,'g')
     ax.plot(x,z,'y')
     
@@ -171,17 +172,17 @@ def plot_1(thedata):
     thedata = widgets.fixed(thedata),
         Country1=widgets.Dropdown(
         description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['Country'].unique().tolist(),
+        options=thedata['country'].unique().tolist(),
         value='Australia',
         disabled=False),
 
         Country2=widgets.Dropdown(
         description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['Country'].unique().tolist(),
+        options=thedata['country'].unique().tolist(),
         value='Australia',
         disabled=False),
 
-        variable1 = widgets.Dropdown(
+        Variable1 = widgets.Dropdown(
         description='Variable1', 
         options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
         value='Total Unemployment (%)')
