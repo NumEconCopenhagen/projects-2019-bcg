@@ -183,8 +183,8 @@ def plot_1(thedata):
 
         variable1 = widgets.Dropdown(
         description='Variable1', 
-        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='Total unemployment (%)')
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Total Unemployment (%)')
 
     )    
     
@@ -223,12 +223,12 @@ def plot_2(thedata):
                      
         variable1 = widgets.Dropdown(
         description='Variable1', 
-        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
         value='GDP Growth (%)'),
                      
         variable2 = widgets.Dropdown(
         description='Variable2', 
-        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
         value='Inflation Rate (%)')
         
     )                 
