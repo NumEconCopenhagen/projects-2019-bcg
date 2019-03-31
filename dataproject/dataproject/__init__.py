@@ -158,7 +158,7 @@ def _plot_1(thedata,Country1,Country2,Variable1):
     
     x = thedata.loc[I,'Year']
     y = thedata.loc[I,Variable1]
-    z = thedata.loc[i,Variable2]
+    z = thedata.loc[i,Variable1]
     ax.plot(x,y,'g')
     ax.plot(x,z,'y')
     
