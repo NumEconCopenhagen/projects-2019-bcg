@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pandas_datareader import wb
 import ipywidgets as widgets
-
+#%%
 # ii. Dowloading data from the World Bank (Countries, Years and GDP Growth)
 gdp = wb.download(indicator='NY.GDP.MKTP.KD.ZG', country=['all'], start=1997, end=2018)
 gdp = gdp.rename(columns={'NY.GDP.MKTP.KD.ZG':'gdp growth'})
@@ -153,12 +153,12 @@ def _plot_1(thedata,Country1,Country2,Variable1):
     ax = fig.add_subplot(1,1,1)
     thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
                                                                 
-    I = (thedata['country'] == Country1)
-    i = (thedata['country'] == Country2)
+    I = (thedata['Country'] == Country1)
+    i = (thedata['Country'] == Country2)
     
     x = thedata.loc[I,'Year']
-    y = thedata.loc[I,Variable1]
-    z = thedata.loc[i,Variable1]
+    y = thedata.loc[I,Country1]
+    z = thedata.loc[i,Country2]
     ax.plot(x,y,'g')
     ax.plot(x,z,'y')
     
@@ -172,20 +172,20 @@ def plot_1(thedata):
     thedata = widgets.fixed(thedata),
         Country1=widgets.Dropdown(
         description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['country'].unique().tolist(),
+        options=thedata['Country'].unique().tolist(),
         value='Australia',
         disabled=False),
 
         Country2=widgets.Dropdown(
         description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['country'].unique().tolist(),
+        options=thedata['Country'].unique().tolist(),
         value='Australia',
         disabled=False),
 
         Variable1 = widgets.Dropdown(
         description='Variable1', 
-        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='Total unemployment (%)')
+        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Total Unemployment (%)')
 
     )    
     
