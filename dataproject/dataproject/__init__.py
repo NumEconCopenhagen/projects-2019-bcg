@@ -34,7 +34,7 @@ GDP_ccode.head()
 #%%
 # v(a). Data (Country Code, Year, Average wage and Average Wage Growth (%)) 
 avg_wage = "C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\OECDwage.csv"
-wages= pd.read_csv(avg_wage)
+wages = pd.read_csv(avg_wage)
 wages.head()
 
 # v(b). Cleaning the dataset, calculate the Average Wage Growth (%) and store it in a new column
@@ -48,7 +48,7 @@ wages.head()
 
 # vi(a). Data (Country Code, Year and Total Unemployment (%)) 
 total_unemployment = "C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\unempl.csv"
-tot_unempl= pd.read_csv(total_unemployment)
+tot_unempl = pd.read_csv(total_unemployment)
 
 #tot_unempl.isna().sum() #maybe delete that line
 
