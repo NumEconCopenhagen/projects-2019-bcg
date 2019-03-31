@@ -46,8 +46,6 @@ wages["Average Wage"].apply(np.round)
 wages["Average Wage Growth (%)"] = wages['Average Wage'].pct_change()*100
 wages.head()
 
-
-#%%
 # vi(a). Data (Country Code, Year and Total Unemployment (%)) 
 total_unemployment = "C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\unempl.csv"
 tot_unempl= pd.read_csv(total_unemployment)
@@ -60,8 +58,6 @@ tot_unempl.drop(drop_these, axis=1, inplace=True)
 tot_unempl.rename(columns = {'LOCATION':'Country Code', 'TIME':'Year', 'Value':'Total Unemployment (%)'}, inplace=True)
 tot_unempl.head()
 
-
-#%%
 # vii(a). Data (country Code, Year and Inflation Rate (%))
 inflation_rate = "C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\inflation.csv"
 inflation = pd.read_csv(inflation_rate)
@@ -73,15 +69,12 @@ inflation.drop(drop_columnsi, axis=1, inplace=True)
 inflation.rename(columns = {'LOCATION':'Country Code', 'TIME':'Year', 'Value':'Inflation Rate (%)'}, inplace=True)
 inflation.head()
 
-
-#%%
 # viii. Merging the last three imported datasets (wages, tot_unempl and inflation)
 wage_unempl = pd.merge(wages, tot_unempl, how='outer', on=['Country Code', 'Year'])
 wage_unempl.head(10)
 
 wage_unempl_infl = pd.merge(wage_unempl, inflation, how='outer', on=['Country Code','Year'])
 wage_unempl_infl.head()
-
 
 #%%
 # ix(a). Creating the final dataset (after merging the two merged datasets) 
@@ -141,21 +134,143 @@ final['Average Wage Growth (%)']=final['Average Wage Growth (%)'].round(2)
 final.head(10)
 
 # ix(e). Saving the final dataset for easier and faster use
-
-final.to_csv('C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\thedata.csv', index = False)
+final.to_csv('C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\thedata.csv', index=False)
 
 
 #%%
-# Importing the final dataset in order to work on it
+# B. Importing the created dataset (thedata) and ploting 
 
+# i. Importing the dataset and renaming the columns
 thedata=pd.read_csv('C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\thedata.csv')
+thedata.rename(columns = {'country':'Country', 'gdp growth':'GDP Growth (%)', '(%) AVG Wage':'AVG Wage Growth (%)'}, inplace=True)
 thedata.head()
 
+#%%
+# ii. Plotting the comparison of a column between two countries
+def _plot_1(thedata,Country1,Country2,Variable1):
+
+    fig = plt.figure(dpi=100)
+    ax = fig.add_subplot(1,1,1)
+    thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
+                                                                
+    I = (thedata['Country'] == Country)
+    
+    x = thedata.loc[I,'Year']
+    y = thedata.loc[I,Country1]
+    z = thedata.loc[I,Country2]
+    ax.plot(x,y,'g')
+    ax.plot(x,z,'y')
+    
+    ax.set_xticks(list(range(2004, 2016 + 1, 2)))
+    ax.set_xlabel('Year')
+    ax.legend(loc='upper right')
+
+def plot_1(thedata):
+    
+    widgets.interact(_plot_1,  
+    thedata = widgets.fixed(thedata),
+        Country1=widgets.Dropdown(
+        description='OECD Country (No data for % AVG Wage for Turkey)', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False),
+
+        Country2=widgets.Dropdown(
+        description='OECD Country (No data for % AVG Wage for Turkey)', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False),
+
+        variable1 = widgets.Dropdown(
+        description='Variable1', 
+        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Total unemployment (%)')
+
+    )    
+    
+plot_1(thedata)
+
+#%%
+# iii. Plotting the trends of two columns in one country
+
+def _plot_2(thedata,Country,variable1,variable2):
+
+    fig = plt.figure(dpi=100)
+    ax = fig.add_subplot(1,1,1)
+    thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
+                                                                
+    I = (thedata['Country'] == Country)
+    
+    x = thedata.loc[I,'Year']
+    y = thedata.loc[I,variable1]
+    z = thedata.loc[I,variable2]
+    ax.plot(x,y,'g')
+    ax.plot(x,z,'y')
+    
+    ax.set_xticks(list(range(2004, 2016 + 1, 2)))
+    ax.set_xlabel('Year')
+    ax.legend(loc='upper right')
+
+def plot_2(thedata):
+    
+    widgets.interact(_plot_2,  
+    thedata = widgets.fixed(thedata),
+        Country=widgets.Dropdown(
+        description='OECD Country (No data for % AVG Wage for Turkey)', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False),
+                     
+        variable1 = widgets.Dropdown(
+        description='Variable1', 
+        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='GDP Growth (%)'),
+                     
+        variable2 = widgets.Dropdown(
+        description='Variable2', 
+        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Inflation Rate (%)')
+        
+    )                 
+
+plot_2(thedata)
+
+#%%
+# iv. Plotting the Phillips Curve after choosing the country
+def _philips_curve(thedata,Country):
+ 
+    thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
+    
+    I = (thedata['Country'] == Country)
+    
+    a=thedata.loc[I,'Total Unemployment (%)']
+    b=thedata.loc[I,'Inflation Rate (%)']
+    plt.scatter(a,b)
+    plt.xlabel('Total Unemployment (%)')
+    plt.ylabel('Inflation Rate (%)')
+    plt.title('Philips Curve')
+    
+    plt.plot(a, b, '--')
+
+    YEAR=thedata['Year']
+    
+    plt.plot(np.unique(a), np.poly1d(np.polyfit(a, b, 1))(np.unique(a)))
+    
+    #for i, txt in enumerate(YEAR):
+     #   plt.annotate(txt,(a[i], b[i]))
+    
+def philips_curve(thedata):
+    
+    widgets.interact(_philips_curve,  
+    thedata = widgets.fixed(thedata),
+        Country=widgets.Dropdown(
+        description='OECD Country', 
+        options=thedata['Country'].unique().tolist(),
+        value='Australia',
+        disabled=False)
+                    )
+                    
+philips_curve(thedata)
 
 
-
-
-
-
-
-
+#%%
