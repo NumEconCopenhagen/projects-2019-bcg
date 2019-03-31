@@ -184,8 +184,8 @@ def plot_1(thedata):
 
         Variable1 = widgets.Dropdown(
         description='Variable1', 
-        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='Total Unemployment (%)')
+        options=['Total unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value='Total unemployment (%)')
 
     )    
     
