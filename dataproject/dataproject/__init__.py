@@ -142,13 +142,13 @@ final.head(10)
 
 # ix(e). Saving the final dataset for easier and faster use
 
-final.to_csv('D:/MScEconomics/Python/Project1/thedata.csv', index = False)
+final.to_csv('C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\thedata.csv', index = False)
 
 
 #%%
 # Importing the final dataset in order to work on it
 
-thedata=pd.read_csv('D:/MScEconomics/Python/Project1/thedata.csv')
+thedata=pd.read_csv('C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\thedata.csv')
 thedata.head()
 
 
