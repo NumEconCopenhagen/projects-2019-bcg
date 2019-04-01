@@ -197,7 +197,7 @@ def plot_1(thedata):
 plot_1(thedata)
 
 #%%
-# iii. Plotting the correlation between two variables for each country
+# iii. Plotting the trend between two variables for each country
 
 def _plot_2(thedata,Country,variable1,variable2):
 
