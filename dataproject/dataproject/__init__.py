@@ -258,7 +258,7 @@ def _philips_curve(thedata,Country):
     
     plt.plot(a, b, '--')
 
-    YEAR=thedata['Year']
+    #YEAR = thedata['Year']
     
     plt.plot(np.unique(a), np.poly1d(np.polyfit(a, b, 1))(np.unique(a)))
     
@@ -280,3 +280,6 @@ philips_curve(thedata)
 
 
 
+
+
+#%%
