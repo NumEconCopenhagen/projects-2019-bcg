@@ -147,7 +147,7 @@ thedata.rename(columns = {'country':'Country', 'gdp growth':'GDP Growth (%)', '(
 thedata.head()
 
 #%%
-# ii. Plotting the comparison of a column between two countries
+# ii. Plotting the comparison between two countries based on a variable
 def _plot_1(thedata,Country1,Country2,Variable1):
 
     fig = plt.figure(dpi=100)
@@ -173,7 +173,7 @@ def _plot_1(thedata,Country1,Country2,Variable1):
 
 
 def plot_1(thedata):
-    
+ 
     widgets.interact(_plot_1,  
     thedata = widgets.fixed(thedata),
         Country1 = widgets.Dropdown(
@@ -191,13 +191,13 @@ def plot_1(thedata):
         Variable1 = widgets.Dropdown(
         description = 'Variable1', 
         options = ['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value = 'Total Unemployment (%)')
+        value = 'Total Unemployment (%)'),
 
     )    
 plot_1(thedata)
 
 #%%
-# iii. Plotting the trends of two columns in one country
+# iii. Plotting the correlation between two variables for each country
 
 def _plot_2(thedata,Country,variable1,variable2):
 
