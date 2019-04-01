@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pandas_datareader import wb
 import ipywidgets as widgets
+
 #%%
 # ii. Dowloading data from the World Bank (Countries, Years and GDP Growth)
 gdp = wb.download(indicator='NY.GDP.MKTP.KD.ZG', country=['all'], start=1997, end=2018)
@@ -157,38 +158,42 @@ def _plot_1(thedata,Country1,Country2,Variable1):
     i = (thedata['Country'] == Country2)
     
     x = thedata.loc[I,'Year']
-    y = thedata.loc[I,Country1]
-    z = thedata.loc[i,Country2]
-    ax.plot(x,y,'g')
-    ax.plot(x,z,'y')
+    y = thedata.loc[I,Variable1]
+    z = thedata.loc[i,Variable1]
+
+    label1 = Country1
+    label2 = Country2
+    ax.plot(x, y, label = label1)
+    ax.plot(x, z, label = label2)
     
-    ax.set_xticks(list(range(2004, 2016 + 1, 2)))
+    ax.set_xticks(list(range(2003, 2017 + 1, 2)))
     ax.set_xlabel('Year')
-    ax.legend(loc='upper right')
+    ax.legend(loc = 'upper right')
+    
+
 
 def plot_1(thedata):
     
     widgets.interact(_plot_1,  
     thedata = widgets.fixed(thedata),
-        Country1=widgets.Dropdown(
-        description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['Country'].unique().tolist(),
-        value='Australia',
-        disabled=False),
+        Country1 = widgets.Dropdown(
+        description = 'OECD Country (No data for % AVG Wage for Turkey)', 
+        options = thedata['Country'].unique().tolist(),
+        value = 'Australia',
+        disabled = False),
 
-        Country2=widgets.Dropdown(
-        description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['Country'].unique().tolist(),
-        value='Australia',
-        disabled=False),
+        Country2 = widgets.Dropdown(
+        description = 'OECD Country (No data for % AVG Wage for Turkey)', 
+        options = thedata['Country'].unique().tolist(),
+        value = 'Australia',
+        disabled = False),
 
         Variable1 = widgets.Dropdown(
-        description='Variable1', 
-        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='Total Unemployment (%)')
+        description = 'Variable1', 
+        options = ['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value = 'Total Unemployment (%)')
 
     )    
-    
 plot_1(thedata)
 
 #%%
@@ -205,32 +210,32 @@ def _plot_2(thedata,Country,variable1,variable2):
     x = thedata.loc[I,'Year']
     y = thedata.loc[I,variable1]
     z = thedata.loc[I,variable2]
-    ax.plot(x,y,'g')
-    ax.plot(x,z,'y')
+    ax.plot(x, y, 'g')
+    ax.plot(x, z, 'y')
     
-    ax.set_xticks(list(range(2004, 2016 + 1, 2)))
+    ax.set_xticks(list(range(2003, 2017 + 1, 2)))
     ax.set_xlabel('Year')
-    ax.legend(loc='upper right')
+    ax.legend(loc = 'upper right')
 
 def plot_2(thedata):
     
     widgets.interact(_plot_2,  
     thedata = widgets.fixed(thedata),
-        Country=widgets.Dropdown(
-        description='OECD Country (No data for % AVG Wage for Turkey)', 
-        options=thedata['Country'].unique().tolist(),
-        value='Australia',
-        disabled=False),
+        Country = widgets.Dropdown(
+        description = 'OECD Country (No data for % AVG Wage for Turkey)', 
+        options = thedata['Country'].unique().tolist(),
+        value = 'Australia',
+        disabled = False),
                      
         variable1 = widgets.Dropdown(
-        description='Variable1', 
-        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='GDP Growth (%)'),
+        description = 'Variable1', 
+        options = ['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value = 'GDP Growth (%)'),
                      
         variable2 = widgets.Dropdown(
-        description='Variable2', 
-        options=['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
-        value='Inflation Rate (%)')
+        description = 'Variable2', 
+        options = ['Total Unemployment (%)','Inflation Rate (%)','Average Wage Growth (%)','GDP Growth (%)'], 
+        value = 'Inflation Rate (%)')
         
     )                 
 
@@ -264,13 +269,14 @@ def philips_curve(thedata):
     
     widgets.interact(_philips_curve,  
     thedata = widgets.fixed(thedata),
-        Country=widgets.Dropdown(
-        description='OECD Country', 
-        options=thedata['Country'].unique().tolist(),
-        value='Australia',
-        disabled=False)
+        Country = widgets.Dropdown(
+        description = 'OECD Country', 
+        options = thedata['Country'].unique().tolist(),
+        value = 'Australia',
+        disabled = False)
                     )
                     
 philips_curve(thedata)
+
 
 
