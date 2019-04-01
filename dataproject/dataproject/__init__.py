@@ -41,17 +41,14 @@ wages.head()
 # v(b). Cleaning the dataset, calculate the Average Wage Growth (%) and store it in a new column
 drop_these = ['INDICATOR', 'SUBJECT' ,'MEASURE', 'FREQUENCY', 'Flag Codes']
 wages.drop(drop_these, axis=1, inplace=True)
-#wages.isna().sum() # maybe delete that line
+
 wages.rename(columns = {'LOCATION':'Country Code', 'TIME':'Year', 'Value':'Average Wage'}, inplace=True)
-wages["Average Wage"].apply(np.round)
 wages["Average Wage Growth (%)"] = wages['Average Wage'].pct_change()*100
 wages.head()
 
 # vi(a). Data (Country Code, Year and Total Unemployment (%)) 
 total_unemployment = "C:\\Users\\George\\Desktop\\Data Analysis Project\\Project1\\unempl.csv"
 tot_unempl = pd.read_csv(total_unemployment)
-
-#tot_unempl.isna().sum() #maybe delete that line
 
 #vi(b). Cleaning and manipulating the data
 drop_these = ['INDICATOR', 'SUBJECT' , 'MEASURE', 'FREQUENCY', 'Flag Codes']
@@ -66,7 +63,6 @@ inflation = pd.read_csv(inflation_rate)
 # vii(b). Cleaning and manipulating the data
 drop_columnsi = ['INDICATOR', 'SUBJECT' , 'MEASURE', 'FREQUENCY', 'Flag Codes']
 inflation.drop(drop_columnsi, axis=1, inplace=True)
-#inflation.isna().sum() # maybe delete that line
 inflation.rename(columns = {'LOCATION':'Country Code', 'TIME':'Year', 'Value':'Inflation Rate (%)'}, inplace=True)
 inflation.head()
 
@@ -117,6 +113,7 @@ for key, value in addT.items():
    I = (final['country'] == 'Turkey') & (final['Year'] == int(key))
    final.loc[I, ['Total Unemployment (%)']] = value
 
+final = final.sort_values(['country','Year'])
 final[final.isnull().any(axis=1)] #Checking if there are any NaN values in our dataset
                                   #(NaN for Turkey - Average Wage and Average Wage Growth (%))
 
@@ -127,11 +124,11 @@ final.info()
 
 final.rename(columns = {'country':'Country', 'gdp growth':'GDP Growth (%)'}, inplace=True) # Renaming "country" and "gdp growth" for consistency
 
-final['GDP Growth (%)']=final['GDP Growth (%)'].round(2)
-final['Inflation Rate (%)']=final['Inflation Rate (%)'].round(2)
-final['Total Unemployment (%)']=final['Total Unemployment (%)'].round(2)
-final['Average Wage']=final['Average Wage'].round(2)
-final['Average Wage Growth (%)']=final['Average Wage Growth (%)'].round(2)
+final['GDP Growth (%)'] = final['GDP Growth (%)'].round(2)
+final['Inflation Rate (%)'] = final['Inflation Rate (%)'].round(2)
+final['Total Unemployment (%)'] = final['Total Unemployment (%)'].round(2)
+final['Average Wage'] = final['Average Wage'].round(2)
+final['Average Wage Growth (%)'] = final['Average Wage Growth (%)'].round(2)
 final.head(10)
 
 # ix(e). Saving the final dataset for easier and faster use
@@ -251,6 +248,7 @@ def _philips_curve(thedata,Country):
     
     a=thedata.loc[I,'Total Unemployment (%)']
     b=thedata.loc[I,'Inflation Rate (%)']
+    
     plt.scatter(a,b)
     plt.xlabel('Total Unemployment (%)')
     plt.ylabel('Inflation Rate (%)')
@@ -258,12 +256,12 @@ def _philips_curve(thedata,Country):
     
     plt.plot(a, b, '--')
 
-    #YEAR = thedata['Year']
+    YEAR = thedata.loc[I,'Year']
     
     plt.plot(np.unique(a), np.poly1d(np.polyfit(a, b, 1))(np.unique(a)))
     
-    #for i, txt in enumerate(YEAR):
-     #   plt.annotate(txt,(a[i], b[i]))
+    for i, txt in enumerate(YEAR):
+        plt.annotate(txt,(a[i], b[i]))
     
 def philips_curve(thedata):
     
