@@ -248,6 +248,13 @@ def _philips_curve(thedata, Country):
     a = thedata.loc[I,'Total Unemployment (%)']
     b = thedata.loc[I,'Inflation Rate (%)']
     
+    #Reseting the index so as the data of the chosen country are at the top of the dataset
+    #Otherwise the annotation fuction doesn't work apart from the default value ('Australia')
+    a = a.reset_index()
+    b = b.reset_index()
+    a = a['Total Unemployment (%)']
+    b = b['Inflation Rate (%)']
+    
     plt.scatter(a,b)
     plt.xlabel('Total Unemployment (%)')
     plt.ylabel('Inflation Rate (%)')
@@ -274,9 +281,3 @@ def philips_curve(thedata):
                     )
                     
 philips_curve(thedata)
-
-
-
-
-
-#%%
