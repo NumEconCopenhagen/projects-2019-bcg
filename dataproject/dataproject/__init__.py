@@ -144,7 +144,7 @@ thedata.head()
 
 #%%
 # ii. Plotting the comparison between two countries based on a variable
-def _plot_1(thedata,Country1,Country2,Variable1):
+def _plot_1(thedata, Country1, Country2, Variable1):
 
     fig = plt.figure(dpi=100)
     ax = fig.add_subplot(1,1,1)
@@ -195,7 +195,7 @@ plot_1(thedata)
 #%%
 # iii. Plotting the trend between two variables for each country
 
-def _plot_2(thedata,Country,variable1,variable2):
+def _plot_2(thedata, Country, variable1, variable2):
 
     fig = plt.figure(dpi=100)
     ax = fig.add_subplot(1,1,1)
@@ -239,7 +239,7 @@ plot_2(thedata)
 
 #%%
 # iv. Plotting the Phillips Curve after choosing the country
-def _philips_curve(thedata,Country):
+def _philips_curve(thedata, Country):
  
     thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
     
