@@ -239,7 +239,7 @@ plot_2(thedata)
 
 #%%
 # iv. Plotting the Phillips Curve after choosing the country
-def _philips_curve(thedata, Country):
+def _phillips_curve(thedata, Country):
  
     thedata.loc[:,['Year']] = pd.to_numeric(thedata['Year'])
     
@@ -269,9 +269,9 @@ def _philips_curve(thedata, Country):
     for i, txt in enumerate(YEAR):
         plt.annotate(txt,(a[i], b[i]))
     
-def philips_curve(thedata):
+def phillips_curve(thedata):
     
-    widgets.interact(_philips_curve,  
+    widgets.interact(_phillips_curve,  
     thedata = widgets.fixed(thedata),
         Country = widgets.Dropdown(
         description = 'OECD Country', 
@@ -280,4 +280,4 @@ def philips_curve(thedata):
         disabled = False)
                     )
                     
-philips_curve(thedata)
+phillips_curve(thedata)
