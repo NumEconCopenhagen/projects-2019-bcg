@@ -94,8 +94,11 @@ final['country'].unique()
 final = final[final.Year > 2002]
 final = final[final.Year < 2018]
 
-# ix(c). Adding missing values for unemployment (for Switzerland, Lithuania and Turkey)
+# ix(c). Checking for missing values and manually adding data for unemployment (for Switzerland, Lithuania and Turkey)
 # (data gained from World Bank)
+
+final[final.isnull().any(axis=1)]
+
 add = {'2003':'4.119999886','2004':'4.320000172', '2005':'4.440000057', '2006':'4','2007':'3.65000009', '2008':'3.349999905','2009':'4.119999886' }
 for key, value in add.items():
    I = (final['country'] == 'Switzerland') & (final['Year'] == int(key))
@@ -113,7 +116,7 @@ for key, value in addT.items():
    final.loc[I, ['Total Unemployment (%)']] = value
 
 final = final.sort_values(['country','Year'])
-final[final.isnull().any(axis=1)] #Checking if there are any NaN values in our dataset
+final[final.isnull().any(axis=1)] #Checking if there are any NaN values left in our dataset
                                   #(NaN for Turkey - Average Wage and Average Wage Growth (%))
 
 # ix(d). Converting "Unemployment Rate (%)" column to float type and rounding the columns with two decimals 
@@ -137,10 +140,13 @@ final.to_csv("./dataproject/data/thedata.csv", index = False)
 #%%
 # B. Importing the created dataset (thedata) and ploting 
 
-# i. Importing the dataset and renaming the columns
+# i(a). Importing the dataset and renaming the columns
 thedata = pd.read_csv("./dataproject/data/thedata.csv")
 thedata.rename(columns = {'country':'Country', 'gdp growth':'GDP Growth (%)', '(%) AVG Wage':'AVG Wage Growth (%)'}, inplace = True)
 thedata.head()
+
+# i(b). Presenting some summary statistics of our data 
+thedata.groupby(('Country')).mean()
 
 #%%
 # ii. Plotting the comparison between two countries based on a variable
