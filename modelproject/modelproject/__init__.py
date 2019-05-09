@@ -356,7 +356,6 @@ def plot_bisection(f, a, b, xmin=-10, xmax=10, xn=100):
         ax.set_ylim([fxvec[0],fxvec[-1]])
         
     widgets.interact(_figure,
-        i=widgets.IntSlider(description="iterations", min=0, max=max_iter, step=1, value=0)
-    );  
+        i=widgets.IntSlider(description="iterations", min=0, max=max_iter, step=1, value=0))  
 
 plot_bisection(f, -10, 10)
