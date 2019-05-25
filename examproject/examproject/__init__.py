@@ -9,8 +9,6 @@ from scipy import interpolate
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
 from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.ticker import FuncFormatter
-%matplotlib inline
 
 # Problem 1:
 
