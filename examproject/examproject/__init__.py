@@ -775,4 +775,5 @@ def interactive(gam):
     plt.title('Utilities Distribution')
     plt.legend()
      
-widgets.interact(interactive, gam = widgets.FloatSlider(description='$\\gamma$', min=-1, max=1, step=0.1, value=0)
+widgets.interact(interactive,
+    gam = widgets.FloatSlider(description='$\\gamma$', min=-1, max=1, step=0.1, value=0)
