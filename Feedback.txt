@@ -1,12 +1,12 @@
 btf484:
 
 Feedback to Dataprojects:
-1. Group name:         , Link: 
-2. Group name:         , Link: 
+1. Group name: abs , Link: https://github.com/NumEconCopenhagen/projects-2019-abs/issues/2
+2. Group name: alexander helene , Link: https://github.com/NumEconCopenhagen/projects-2019-alexander-helene/issues/1
 
 Feedback to Modelprojects:
-1. Group name:         , Link: 
-2. Group name:         , Link:
+1. Group name: team spirit , Link: https://github.com/NumEconCopenhagen/projects-2019-team-spirit/issues/9
+2. Group name: goldmeyer seiss slaar markedet , Link: https://github.com/NumEconCopenhagen/projects-2019-goldmeyer-seiss-slaar-markedet/issues/9
 
 lbj294:
 
