@@ -1,7 +1,32 @@
-Yi Chen
+btf484:
 
-George Karahalias-Sandris
+Feedback to Dataprojects:
+1. Group name:         , Link: 
+2. Group name:         , Link: 
 
+Feedback to Modelprojects:
+1. Group name:         , Link: 
+2. Group name:         , Link:
+
+lbj294:
+
+Feedback to Dataprojects:
+1. Group name: jl     , Link: https://github.com/NumEconCopenhagen/projects-2019-jl/issues/1
+2. Group name: hold-1 , Link: https://github.com/NumEconCopenhagen/projects-2019-hold-1/issues/1
+
+Feedback to Modelprojects:
+1. Group name: 1312       , Link: https://github.com/NumEconCopenhagen/projects-2019-1312/issues/5
+2. Group name: safespaces , Link: https://github.com/NumEconCopenhagen/projects-2019-safespaces/issues/7
+
+gtb776:
+
+Feedback to Dataprojects:
+1. Group name:         , Link: 
+2. Group name:         , Link: 
+
+Feedback to Modelprojects:
+1. Group name:         , Link: 
+2. Group name:         , Link:
 
 
 Bogdan Birgovan - Feedback to:
