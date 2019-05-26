@@ -6,3 +6,4 @@ That project was uploaded as an exam assignment for the course of "Introduction 
 2. AS-AD model
 3. Exchange Economy model
 
+To run our code, no extra packages or dependencies are needed
