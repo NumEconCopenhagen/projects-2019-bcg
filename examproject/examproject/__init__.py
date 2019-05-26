@@ -774,6 +774,8 @@ def interactive(gam):
     plt.ylabel('Consumers')
     plt.title('Utilities Distribution')
     plt.legend()
-     
+
+# The next line does not work in visual studio, but it works in Jupyter.
+# We were not able to understand how to fix it.        
 widgets.interact(interactive,
     gam = widgets.FloatSlider(description='$\\gamma$', min=-1, max=1, step=0.1, value=0)
