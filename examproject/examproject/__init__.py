@@ -523,6 +523,9 @@ print(f'The value of phi estimated with the bisect numerical optimizer is: bisec
 #%%
 # Problem 2, Question 6:
 
+# This subquestion we did not manage to solve it. We included our try into Jupyter notebook as comments, but we decided not 
+# to include in VS file.
+
 #%%
 # Problem 3:
 
