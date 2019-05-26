@@ -567,6 +567,11 @@ plt.legend(loc='upper right')
 #%%
 #Problem 3, Question 2:
 
+# Check the values of betas
+betas
+
+# We know from the fucntion of betas and alphas that the first column of betas is for good 1,
+# the second column for good 2, and the third column for good 3. So we can define the demand like the functions  below.
 # Demand function:
 
 def demand_good_1_fun(betas, p1, p2, e1, e2, e3):
@@ -697,12 +702,10 @@ p2 = 2.6166
 
 # Calculate the utility function
 def utility(betas, e1, e2, e3, gamma):
-    
     I = 6.49*e1 + 2.62*e2 + e3
     x1 = betas[:,0]*(I/6.49)
     x2 = betas[:,1]*(I/2.62)
     x3 = betas[:,2]*I
-    
     return (x1**betas[:,0] + x2**betas[:,1] + x3**betas[:,2])**gamma
 
 # Plot the utility function
@@ -738,12 +741,10 @@ p2 = 2.6172
 
 # Define the new utility function when endowments changed
 def utility_1(betas,e_1, e_2, e_3, gamma):
-    
     I = 6.4860*e_1 + 2.6172*e_2 + e_3
     x1 = betas[:,0]*(I/6.4860)
     x2 = betas[:,1]*(I/2.6172)
     x3 = betas[:,2]*(I/1)
-    
     return (x1**betas[:,0] + x2**betas[:,1] + x3**betas[:,2])**gamma
 
 U_1 = utility_1(betas, e_1, e_2, e_3, gamma)
